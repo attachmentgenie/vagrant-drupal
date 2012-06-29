@@ -1,0 +1,4 @@
+module: puppetlabs/stdlib
+version: 2.3.1
+url: file:///home/vagrant/.puppet/var/puppet-module/cache/http_forge_puppetlabs_com-75a31f1d6f1ef6eb63b4479b3512ee1508209a7f/puppetlabs-stdlib-2.3.1.tar.gz
+installed: Fri Apr 13 06:38:11 -0700 2012
