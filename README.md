@@ -8,5 +8,5 @@
     vagrant up
     vagrant provision
 
-## Install Drupal ##
+## Using Drupal ##
 	your drupal site will be available via http://localhost:8080.
