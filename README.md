@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/attachmentgenie/orchestrate-nodes.png)](http://travis-ci.org/attachmentgenie/orchestrate-nodes)
+
 # Setting up a Drupal host #
 
 ## Requirements ##
@@ -9,4 +11,4 @@
     vagrant provision
 
 ## Using Drupal ##
-	your drupal site will be available via http://localhost:8080.
+    your drupal site will be available via http://localhost:8080.
