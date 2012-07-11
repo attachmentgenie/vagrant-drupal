@@ -50,7 +50,7 @@ file { '/home/vagrant/drupal-data':
   ensure => directory,
   owner  => 'www-data',
   group  => 'www-data',
-  mode   => '777',
+  mode   => '0777',
 }
 
 exec { 'download-drupal':
@@ -70,7 +70,7 @@ file { "/home/vagrant/drupal-$drupal_version":
   owner   => 'www-data',
   group   => 'www-data',
   recurse => true,
-  mode    => '777',
+  mode    => '0777',
   require => Exec['unzip-drupal-zip'],
 }
 
