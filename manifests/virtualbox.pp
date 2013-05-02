@@ -1,4 +1,4 @@
-$drupal_version = '7.14'
+$drupal_version = '7.22'
 
 Exec {
   path => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
