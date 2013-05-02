@@ -1,6 +1,6 @@
 nguage: ruby
 script:
-  - "puppet-lint --with-filename manifest/virtualbox.pp"
+  - "puppet-lint --with-filename manifests/virtualbox.pp"
   - "rake spec"
 rvm:
   - 1.8.7
