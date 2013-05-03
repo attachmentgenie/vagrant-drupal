@@ -1,4 +1,4 @@
-nguage: ruby
+language: ruby
 script:
   - "puppet-lint --with-filename manifests/virtualbox.pp"
   - "rake spec"
