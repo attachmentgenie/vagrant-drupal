@@ -1,4 +1,4 @@
-$drupal_version = '7.22'
+$drupal_version = '7.23'
 
 Exec {
   path => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
@@ -7,6 +7,7 @@ Exec {
 class { 'apt':
   always_apt_update => true,
 }
+Class['apt'] -> Package <| |>
 
 #Install default applications
 case $::operatingsystem {
