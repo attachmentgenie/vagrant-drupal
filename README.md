@@ -1,5 +1,3 @@
-[![Build Status](https://secure.travis-ci.org/attachmentgenie/vagrant-drupal.png)](http://travis-ci.org/attachmentgenie/vagrant-drupal)
-
 # Setting up a Drupal host #
 
 ## Requirements ##
