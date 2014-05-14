@@ -14,14 +14,6 @@ GIT
       puppetlabs/stdlib (>= 2.2.1)
 
 GIT
-  remote: git://github.com/attachmentgenie/puppet-module-ufw
-  ref: master
-  sha: a6149c9bd5bc631e18d041c5142a5c1c79b2bcde
-  specs:
-    attachmentgenie/ufw (1.4.8)
-      puppetlabs/stdlib (>= 2.2.1)
-
-GIT
   remote: git://github.com/puppetlabs/puppetlabs-apache.git
   ref: master
   sha: c9bc4369af154e3fa8e4015e9a255d530509d2a7
@@ -56,7 +48,6 @@ GIT
 
 DEPENDENCIES
   attachmentgenie/ssh (>= 0)
-  attachmentgenie/ufw (>= 0)
   puppetlabs/apache (>= 0)
   puppetlabs/apt (>= 0)
   puppetlabs/mysql (>= 0)

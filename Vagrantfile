@@ -8,5 +8,6 @@ Vagrant.configure(2) do |config|
         puppet.manifests_path = "manifests"
         puppet.module_path = "modules"
         puppet.manifest_file = "virtualbox.pp"
+        puppet.facter = { "drupal_version" => "7.28" }
     end
 end

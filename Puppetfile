@@ -10,5 +10,3 @@ mod "puppetlabs/ntp",
   :git => "git://github.com/puppetlabs/puppetlabs-ntp.git"
 mod "attachmentgenie/ssh",
   :git => "git://github.com/attachmentgenie/puppet-module-ssh"
-mod "attachmentgenie/ufw",
-  :git => "git://github.com/attachmentgenie/puppet-module-ufw"

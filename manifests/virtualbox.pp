@@ -1,5 +1,3 @@
-$drupal_version = '7.28'
-
 #Setup repositories
 class { 'apt':
   always_apt_update => true,
@@ -9,8 +7,8 @@ Class['apt'] -> Package <| |>
 #Install default applications
 case $::osfamily {
   'Debian': {
-    $default_packages = ['git',
-                         'subversion',
+    $default_packages = ['çurl',
+                         'git',
                          'tree',
                          'unzip',
                          'wget',
@@ -26,20 +24,19 @@ package { $default_packages:
 }
 
 #Setup services
-class { 'ufw': }
-
 class { 'ssh::client': }
-ufw::allow { 'allow-ssh-from-all':
-  port => 22,
-}
 
 class { 'ntp': }
-ufw::allow { 'allow-ntp-from-all':
-  port => 123,
-}
 
-case $::operatingsystem {
-  default: { $project_packages = ['php5-cli','php-pear','php5-gd'] }
+case $::osfamily {
+  'Debian': {
+    $project_packages = ['php5-cli',
+                         'php-pear',
+                         'php5-gd']
+  }
+  default: {
+    fail("Unsupported osfamily ${::osfamily}")
+  }
 }
 
 package { $project_packages:
@@ -74,18 +71,18 @@ file { '/home/vagrant/drupal-data':
 }
 
 exec { 'download-drupal':
-  command => "/usr/bin/wget http://ftp.drupal.org/files/projects/drupal-$drupal_version.zip -O /home/vagrant/drupal-$drupal_version.zip",
-  creates => "/home/vagrant/drupal-$drupal_version.zip",
+  command => "/usr/bin/wget http://ftp.drupal.org/files/projects/drupal-$::drupal_version.zip -O /home/vagrant/drupal-$::drupal_version.zip",
+  creates => "/home/vagrant/drupal-$::drupal_version.zip",
   require => Package[$default_packages],
 }
 
 exec { 'unzip-drupal-zip':
-  command => "/usr/bin/unzip /home/vagrant/drupal-$drupal_version.zip  -d /home/vagrant",
-  creates => "/home/vagrant/drupal-$drupal_version",
+  command => "/usr/bin/unzip /home/vagrant/drupal-$::drupal_version.zip  -d /home/vagrant",
+  creates => "/home/vagrant/drupal-$::drupal_version",
   require => Exec['download-drupal'],
 }
 
-file { "/home/vagrant/drupal-$drupal_version":
+file { "/home/vagrant/drupal-$::drupal_version":
   ensure  => directory,
   owner   => 'www-data',
   group   => 'www-data',
@@ -96,18 +93,15 @@ file { "/home/vagrant/drupal-$drupal_version":
 
 file { '/home/vagrant/drupal-www':
   ensure  => link,
-  target  => "/home/vagrant/drupal-$drupal_version",
-  require => File["/home/vagrant/drupal-$drupal_version"],
+  target  => "/home/vagrant/drupal-$::drupal_version",
+  require => File["/home/vagrant/drupal-$::drupal_version"],
 }
 
-apache::vhost { 'drupal.test':
+apache::vhost { 'drupal.dev':
   port     => '80',
   docroot  => '/home/vagrant/drupal-www',
   override => ['All'],
   require  => [Exec['unzip-drupal-zip'],File['/home/vagrant/drupal-data']],
-}
-ufw::allow { 'allow-http-from-all':
-  port => 80,
 }
 
 mysql::db { 'drupal':
