@@ -7,7 +7,7 @@ Class['apt'] -> Package <| |>
 #Install default applications
 case $::osfamily {
   'Debian': {
-    $default_packages = ['çurl',
+    $default_packages = ['curl',
                          'git',
                          'tree',
                          'unzip',
@@ -28,31 +28,6 @@ class { 'ssh::client': }
 
 class { 'ntp': }
 
-case $::osfamily {
-  'Debian': {
-    $project_packages = ['php5-cli',
-                         'php-pear',
-                         'php5-gd']
-  }
-  default: {
-    fail("Unsupported osfamily ${::osfamily}")
-  }
-}
-
-package { $project_packages:
-  ensure   => latest,
-}
-
-class { '::apache':
-  default_vhost          => false,
-  keepalive              => 'On',
-  mpm_module             => 'prefork',
-}
-
-class { '::apache::mod::php': }
-class { '::apache::mod::headers': }
-class { '::apache::mod::rewrite': }
-
 class { '::mysql::client': }
 
 class { '::mysql::server':
@@ -61,6 +36,14 @@ class { '::mysql::server':
 
 class { '::mysql::bindings':
   php_enable       => true,
+}
+
+mysql::db { 'drupal':
+  user     => 'drupal',
+  password => 'drupal',
+  host     => 'localhost',
+  grant    => ['all'],
+  require  => Class['mysql::server'],
 }
 
 file { '/home/vagrant/drupal-data':
@@ -97,17 +80,34 @@ file { '/home/vagrant/drupal-www':
   require => File["/home/vagrant/drupal-$::drupal_version"],
 }
 
+case $::osfamily {
+  'Debian': {
+    $project_packages = ['php5-cli',
+                         'php-pear',
+                         'php5-gd']
+  }
+  default: {
+    fail("Unsupported osfamily ${::osfamily}")
+  }
+}
+
+package { $project_packages:
+  ensure   => latest,
+}
+
+class { '::apache':
+  default_vhost          => false,
+  keepalive              => 'On',
+  mpm_module             => 'prefork',
+}
+
+class { '::apache::mod::php': }
+class { '::apache::mod::headers': }
+class { '::apache::mod::rewrite': }
+
 apache::vhost { 'drupal.dev':
   port     => '80',
   docroot  => '/home/vagrant/drupal-www',
   override => ['All'],
-  require  => [Exec['unzip-drupal-zip'],File['/home/vagrant/drupal-data']],
-}
-
-mysql::db { 'drupal':
-  user     => 'drupal',
-  password => 'drupal',
-  host     => 'localhost',
-  grant    => ['all'],
-  require  => Class['mysql::server'],
+  require  => [File['/home/vagrant/drupal-www'],File['/home/vagrant/drupal-data']],
 }
