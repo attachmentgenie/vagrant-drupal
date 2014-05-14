@@ -3,3 +3,4 @@
 /.project
 /.tmp
 /.vagrant
+/Puppetfile.lock
