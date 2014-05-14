@@ -1,3 +1,5 @@
 
 /.vagrant
 /.project
+/.librarian/puppet/config
+/.tmp/librarian/cache/source/puppet/forge/forge_puppetlabs_com/puppetlabs/stdlib/4.1.0/cache/http_forge_puppetlabs_com-75a31f1d6f1ef6eb63b4479b3512ee1508209a7f/puppetlabs-stdlib-4.1.0.tar.gz

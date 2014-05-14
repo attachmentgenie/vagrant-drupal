@@ -1,0 +1,64 @@
+FORGE
+  remote: http://forge.puppetlabs.com
+  specs:
+    puppetlabs/concat (1.1.0-rc1)
+      puppetlabs/stdlib (>= 3.0.0)
+    puppetlabs/stdlib (4.1.0)
+
+GIT
+  remote: git://github.com/attachmentgenie/puppet-module-ssh
+  ref: master
+  sha: a72286b3fe8b558282c9cfe10049d85755314064
+  specs:
+    ssh (1.3.0)
+      puppetlabs/stdlib (>= 2.2.1)
+
+GIT
+  remote: git://github.com/attachmentgenie/puppet-module-ufw
+  ref: master
+  sha: a6149c9bd5bc631e18d041c5142a5c1c79b2bcde
+  specs:
+    ufw (1.4.8)
+      puppetlabs/stdlib (>= 2.2.1)
+
+GIT
+  remote: git://github.com/puppetlabs/puppetlabs-apache.git
+  ref: master
+  sha: c9bc4369af154e3fa8e4015e9a255d530509d2a7
+  specs:
+    apache (1.0.1)
+      puppetlabs/concat (>= 1.0.0)
+      puppetlabs/stdlib (>= 2.4.0)
+
+GIT
+  remote: git://github.com/puppetlabs/puppetlabs-apt.git
+  ref: master
+  sha: a45c9a8b5831d88b324d2794751fffe66e3d0510
+  specs:
+    apt (1.4.1)
+      puppetlabs/stdlib (>= 2.2.1)
+
+GIT
+  remote: git://github.com/puppetlabs/puppetlabs-mysql.git
+  ref: master
+  sha: f70c81c2d0328d697faaab96891bece831f7b3c8
+  specs:
+    mysql (2.2.1)
+      puppetlabs/stdlib (>= 3.2.0)
+
+GIT
+  remote: git://github.com/puppetlabs/puppetlabs-ntp.git
+  ref: master
+  sha: 1aaee23e9c54ea03c8e469bb761d16988dbaf40c
+  specs:
+    ntp (3.0.4)
+      puppetlabs/stdlib (>= 0.1.6)
+
+DEPENDENCIES
+  apache (>= 0)
+  apt (>= 0)
+  mysql (>= 0)
+  ntp (>= 0)
+  ssh (>= 0)
+  ufw (>= 0)
+
